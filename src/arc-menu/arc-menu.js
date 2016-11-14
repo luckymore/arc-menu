@@ -1,23 +1,3 @@
-// (function(){
-//   var ul=$("#navs"),li=$("#navs li"),i=li.length,n=i-1,r=120;
-
-//   ul.click(function(){
-//     $(this).toggleClass('active');
-//     if($(this).hasClass('active')){
-//       for(var a=0;a<i;a++){
-//         li.eq(a).css({
-//           'transition-delay':""+(50*a)+"ms",
-//           '-webkit-transition-delay':""+(50*a)+"ms",
-//           'left':(r*Math.cos(90/n*a*(Math.PI/180))),
-//           'top':(-r*Math.sin(90/n*a*(Math.PI/180)))  
-//         });
-//       }
-//     }else{
-//       li.removeAttr('style');
-//     }
-//   });
-// })($);
-
 (function(){
     var params = {
         menuItemColor: '#4ECDC4',  //菜单项颜色列表
@@ -43,27 +23,46 @@
     arcMenu.prototype.init = function () {
         var opt    = this.opt,
             r      = opt.radius,
+            color  = opt.menuItemColor,
             len    = li.length;
 
-        ul.css({'transform': 'rotate(' + opt.startAngle + 'deg)'})
-          .append('<style>#navs:after{transform:rotate(-' + opt.startAngle + 'deg)}</style>');
-        li.css({'transform': 'rotate(-' + opt.startAngle + 'deg)'})
+        function setBgColor() {
+            if(typeof color === 'string') {
+                li.css('background-color', color);
+            } else if(Array.isArray(color)) {
+                for(var i = 0; i < len; i++) { 
+                    li.eq(i).css('background-color', color[i] || '#4ECDC4');
+                }
+            }
+        }
 
+        function correctDirection() {
+            ul.css({'transform': 'rotate(' + opt.startAngle + 'deg)'})
+              .append('<style>#navs:after{transform:rotate(-' + opt.startAngle + 'deg)}</style>');
+            li.css({'transform': 'rotate(-' + opt.startAngle + 'deg)'});
+        }
+
+        correctDirection();
+        setBgColor();
+        
         ul.click(function(){
             $(this).toggleClass('active');
-            if($(this).hasClass('active')){
-                for(var i = 0; i < len; i++){
-                    var radian = (opt.endAngle - opt.startAngle) / (len - 1) * i * (Math.PI / 180);
+            for(var i = 0; i < len; i++){
+                var radian = (opt.endAngle - opt.startAngle) / (len - 1) * i * (Math.PI / 180);
 
+                if($(this).hasClass('active')){
                     li.eq(i).css({
                         'transition-delay':"" + (opt.delay * i) + "ms",
                         '-webkit-transition-delay':"" + (opt.delay * i) + "ms",
                         'left': r * Math.cos(radian),
                         'top': -r * Math.sin(radian)
                     });
+                } else {
+                    li.eq(i).css({
+                        'left': 0,
+                        'top': 0
+                    });
                 }
-            }else{
-                li.removeAttr('style');
             }
         });
     }

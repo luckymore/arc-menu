@@ -3,23 +3,24 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="initial-scale=1.0,maximum-scale=4.0,minimum-scale=1.0,user-scalable=0,width=device-width" />
 	<title>扇形菜单（arc-menu）</title>
 	<link rel="stylesheet" href="../src/arc-menu/style.css">
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 </head>
 <body>
 	<ul id="navs" data-open="close" data-close="open">
-		<li><a href="#">menu</a></li>
-		<li><a href="#">menu</a></li>
-		<li><a href="#">menu</a></li>
-		<li><a href="#">menu</a></li>
-		<li><a href="#">menu</a></li>
+		<li><a href="#">menu1</a></li>
+		<li><a href="#">menu2</a></li>
+		<li><a href="#">menu3</a></li>
+		<li><a href="#">menu4</a></li>
+		<li><a href="#">menu5</a></li>
 	</ul>
 	<script src="../src/arc-menu/arc-menu.js"></script>
 	<script type="text/javascript">
 		new arcMenu({
-			menuItemColor: '#ff6160'  ['#333','#222'],	//菜单项颜色列表
-			duration: 3,	//动画持续时间
+			menuItemColor: ['red','blue','yellow','#233'],	//菜单项颜色列表
+			duration: 3,					//动画持续时间
 			delay: 50,
 			startAngle: 90,
 			endAngle: 180,
