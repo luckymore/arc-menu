@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>扇形菜单（arc-menu）</title>
+	<link rel="stylesheet" href="../src/arc-menu/style.css">
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+</head>
+<body>
+	<ul id="navs" data-open="close" data-close="open">
+		<li><a href="#">menu</a></li>
+		<li><a href="#">menu</a></li>
+		<li><a href="#">menu</a></li>
+		<li><a href="#">menu</a></li>
+		<li><a href="#">menu</a></li>
+	</ul>
+	<script src="../src/arc-menu/arc-menu.js"></script>
+	<script type="text/javascript">
+		new arcMenu({
+			menuItemColor: '#ff6160'  ['#333','#222'],	//菜单项颜色列表
+			duration: 3,	//动画持续时间
+			delay: 50,
+			startAngle: 90,
+			endAngle: 180,
+			radius: 200
+		});
+	</script>
+</body>
+</html>
